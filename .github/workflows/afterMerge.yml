@@ -1,0 +1,20 @@
+name: aftermerge
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: "aftermerge"
+  cancel-in-progress: false
+
+  jobs:
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Sleep for 30 seconds
+          uses: jakejarvis/wait-action@master
+          with:
+            time: '100s'
