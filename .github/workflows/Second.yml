@@ -3,7 +3,6 @@ name: Secoond
 on:
   workflow_run:
     workflows: ["aftermerge"]
-    branches: [master]
     types:
       - completed
 
