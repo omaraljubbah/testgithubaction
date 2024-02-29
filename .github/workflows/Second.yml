@@ -10,10 +10,21 @@ jobs:
   dance:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          echo "before github ref"
+          echo ${{ github.ref }}
       - name: Checkout my_organization/my_private_repository
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.workflow_run.head_branch }}
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "previous branch"
+          echo ${{ github.event.workflow_run.head_branch }}
+          echo "github ref"
+          echo ${{ github.ref }}
+
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
         with:
