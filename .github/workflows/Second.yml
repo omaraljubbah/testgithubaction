@@ -16,12 +16,12 @@ jobs:
       - name: Checkout my_organization/my_private_repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.workflow_run.sha }}
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Any Name Bash Test Step
         shell: bash
         run: |
           echo "previous branch"
-          echo ${{ github.event.workflow_run.sha }}
+          echo ${{ github.event.workflow_run.head_sha }}
           echo "current ref"
           echo ${{ github.sha }}
 
