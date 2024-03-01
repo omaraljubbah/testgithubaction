@@ -1,5 +1,5 @@
 name: Secoond
-run-name: Deploy commit ${{  github.event.workflow_run.head_sha }} by @${{ github.event.workflow_run.actor }}
+run-name: Deploy commit ${{  github.event.workflow_run.head_sha }} by @${{ github.event.workflow_run.actor.name }}
 
 on:
   workflow_run:
