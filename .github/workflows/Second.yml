@@ -39,7 +39,7 @@ jobs:
         id: abc
         with:
           format: space-delimited
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GG_TOKEN }}
       - name: Printing
         run: |
           echo "All:"
