@@ -1,5 +1,5 @@
 name: Secoond
-run-name: Deploy push action ${{  github.event.workflow_run.head_sha }} by ${{ github.event.workflow_run.jobs_url }}
+run-name: Deploy [push action](${{ github.event.workflow_run.html_url }}) to dev
 
 on:
   workflow_run:
@@ -25,6 +25,7 @@ jobs:
           echo ${{ github.event.workflow_run.head_sha }}
           echo "current ref"
           echo ${{ github.sha }}
+          echo ${{ github.event.workflow_run }}
 
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
