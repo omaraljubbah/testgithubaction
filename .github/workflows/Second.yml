@@ -1,5 +1,5 @@
 name: Secoond
-run-name: Deploy push action ${{  github.event.workflow_run.head_sha }} by ${{ github.event.workflow_run.workflow_url }}
+run-name: Deploy push action ${{  github.event.workflow_run.head_sha }} by ${{ github.event.workflow_run.jobs_url }}
 
 on:
   workflow_run:
