@@ -1,5 +1,5 @@
 name: Secoond
-run-name: Deploy [push action](${{ github.event.workflow_run.html_url }}) to dev
+run-name: Deploy ${{ github.event.workflow_run.head_sha }} to dev
 
 on:
   workflow_run:
@@ -14,6 +14,11 @@ jobs:
       - run: |
           echo "before github ref"
           echo ${{ github.sha }}
+          echo "Deploying action [push action](${{ github.event.workflow_run.html_url }})"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github.event.workflow_run) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Checkout my_organization/my_private_repository
         uses: actions/checkout@v3
         with:
