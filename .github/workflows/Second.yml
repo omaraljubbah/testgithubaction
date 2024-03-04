@@ -30,7 +30,7 @@ jobs:
           # https://docs.github.com/en/rest/git/refs#get-a-reference
           # gh api -H "Accept: application/vnd.github+json" /repos/Cinemo-GmbH/pace/git/ref/tags/dev-test
           script: |
-            const backupSha =  context.payload.workflow_run?.head_sha ?? context.sha;
+            const backupSha =  context.payload.workflow_run?.head_sha;
             console.log(backupSha);
             core.setOutput('sha', backupSha);
       - name: Any Name Bash Test Step
