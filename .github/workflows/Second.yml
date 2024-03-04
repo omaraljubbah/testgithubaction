@@ -23,9 +23,20 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Find SHA
+        id: find-sha
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # ratchet:actions/github-script@v7
+        with:
+          # https://docs.github.com/en/rest/git/refs#get-a-reference
+          # gh api -H "Accept: application/vnd.github+json" /repos/Cinemo-GmbH/pace/git/ref/tags/dev-test
+          script: |
+            const shaDev = context.event.workflow_run.head_sha;
+            console.log(context.event.workflow_run.head_sha);
+            core.setOutput('sha', shaDev);
       - name: Any Name Bash Test Step
         shell: bash
         run: |
+          echo "previous step ${{ steps.find-sha.outputs.sha }}"
           echo "previous branch"
           echo ${{ github.event.workflow_run.head_sha }}
           echo "current ref"
