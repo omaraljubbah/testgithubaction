@@ -19,6 +19,7 @@ jobs:
         with:
           time: '30s'
   deploy:
+    needs: [prepare]
     environment: dev
     runs-on: ubuntu-latest
     steps:
