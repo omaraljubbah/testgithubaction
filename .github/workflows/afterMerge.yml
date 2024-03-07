@@ -12,6 +12,7 @@ concurrency:
 
 jobs:
   deploy:
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       - name: Sleep for 30 seconds

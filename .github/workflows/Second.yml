@@ -2,16 +2,14 @@ name: Secoond
 run-name: Deploy ${{ github.event.workflow_run.head_sha }} to dev
 
 on:
-  workflow_run:
-    workflows: ["aftermerge"]
-    types:
-      - completed
+  deployment:
+#    workflows: ["aftermerge"]
+#    types:
+#      - completed
 
 jobs:
   dance:
     runs-on: ubuntu-latest
-    environment: dev
-    ref: ${{ github.event.workflow_run.head_sha }}
     steps:
       - run: |
           echo "before github ref"
