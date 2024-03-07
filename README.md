@@ -15,4 +15,3 @@ eee
 ww
 ss
 22
-sa
