@@ -13,8 +13,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: dev
-    ref: ${{ github.event.workflow_run.head_sha }}
     steps:
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
