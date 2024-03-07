@@ -13,6 +13,9 @@ concurrency:
 jobs:
   run1:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
     steps:
       - name: Update tag
         uses: actions/github-script@v7
