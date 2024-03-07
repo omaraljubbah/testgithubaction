@@ -23,6 +23,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Run Triage Workflow
         run: |
-          gh workflow run afterMerge.yml --ref ${{ github.sha }}
+          gh workflow run Second.yml --ref ${{ github.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GG_TOKEN }}
