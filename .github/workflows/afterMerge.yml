@@ -18,7 +18,7 @@ jobs:
         uses: jakejarvis/wait-action@master
         with:
           time: '30s'
-  deploy:
+  run1:
     needs: [prepare]
     environment: dev
     runs-on: ubuntu-latest
@@ -27,3 +27,15 @@ jobs:
         uses: jakejarvis/wait-action@master
         with:
           time: '30s'
+          steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install gh CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
+      - name: Run Triage Workflow
+        run: |
+          gh workflow run afterMerge.yml --ref github.sha
