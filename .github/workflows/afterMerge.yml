@@ -28,7 +28,7 @@ jobs:
             github.rest.git.updateRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'tags/dev',
+              ref: 'tags/tags/dev',
               sha: context.sha
             })
       - name: Sleep for 30 seconds
