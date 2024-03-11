@@ -1,0 +1,24 @@
+# have a default deployment of push-dev-test at the start of every working day (Mon-Fri - 10:00)
+name: scheduled deployment
+
+on:
+  workflow_dispatch:
+  schedule:
+    # The "*" character has special semantics in YAML, so this string has to be quoted.
+    # runs every workday at 10:00 am check "https://crontab.guru/#0_10_*_*_1-5"
+    - cron: "0 10 * * 1-5"
+
+jobs:
+  trigger-deployment:
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run Triage Workflow
+        run: |
+          gh workflow run Second.yml --ref tags/dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GG_TOKEN }}
