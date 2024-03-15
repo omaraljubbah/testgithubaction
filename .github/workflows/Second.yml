@@ -19,6 +19,18 @@ jobs:
           echo " lock deployment ${{ vars.LOCK_DEPLOYMENT }}"
           echo " github var ${{ github.vars.LOCK_DEPLOYMENT }} "
           echo "Deploying action [push action](${{ github.event.workflow_run.html_url }})"
+      - name: "check"
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # ratchet:actions/github-script@v7
+        with:
+          script: |
+            const isWorkingHours = `${{ vars.LOCK_DEPLOYMENT }}`;
+            if (isWorkingHours === 'true') {
+                core.setOutput('continue', 'true');
+            } else {
+                core.setOutput('continue', 'false');
+            }
+      - run: |
+          echo "output is ${{ steps.check.outputs.continue }}"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github.event.workflow_run) }}
