@@ -51,6 +51,7 @@ jobs:
           time: '30s'
   test:
     if: ${{ vars.LOCK_DEPLOYMENT != 'true' }}
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
