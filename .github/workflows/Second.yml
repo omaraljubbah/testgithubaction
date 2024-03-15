@@ -16,6 +16,8 @@ jobs:
       - run: |
           echo "before github ref"
           echo ${{ github.sha }}
+          echo "$ lock deployment {{ vars.LOCK_DEPLOYMENT }}"
+          echo " github var ${{ github.vars.LOCK_DEPLOYMENT }} "
           echo "Deploying action [push action](${{ github.event.workflow_run.html_url }})"
       - name: Dump GitHub context
         env:
