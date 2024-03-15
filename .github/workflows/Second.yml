@@ -10,7 +10,6 @@ on:
 jobs:
   dance:
     environment: dev
-    if: ${{ vars.LOCK_DEPLOYMENT == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - run: |
