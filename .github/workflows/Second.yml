@@ -9,9 +9,9 @@ on:
 
 jobs:
   dance:
+    environment: dev
     if: ${{ vars.LOCK_DEPLOYMENT != 'true' }}
     runs-on: ubuntu-latest
-    environment: dev
     steps:
       - run: |
           echo "before github ref"

@@ -34,8 +34,7 @@ jobs:
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s'
-          steps:
+          time: '5s'
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Run Triage Workflow
