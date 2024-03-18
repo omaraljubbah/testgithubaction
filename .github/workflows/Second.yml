@@ -28,6 +28,7 @@ jobs:
             } else {
                 core.setOutput('continue', 'false');
             }
+            console.log("it is locked")
       - run: |
           echo "output is ${{ steps.check.outputs.continue }}"
       - name: Dump GitHub context
