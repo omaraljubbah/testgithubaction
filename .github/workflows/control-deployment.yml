@@ -38,4 +38,6 @@ jobs:
           if [[ "${{ github.event.inputs.control }}" == "enable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
             gh variable set LOCK_DEVELOPMENT_PRODUCTION --body "false"
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GG_TOKEN }}
 
