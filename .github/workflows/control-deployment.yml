@@ -1,0 +1,43 @@
+name: Control Deployments
+run-name: ${{ github.event.inputs.control }} deploy to ${{ github.event.inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      control:
+        type: choice
+        description: enable or disable deployment
+        options:
+          - "Enable"
+          - "Disable"
+      environment:
+        type: choice
+        description: enable or disable deployment
+        options:
+          - "Development"
+          - "Production"
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - run: |
+          if [[ "${{ github.event.inputs.control }}" == "disable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
+            gh variable set LOCK_DEVELOPMENT_DEPLOYMENT --body "true"
+          fi
+          
+          if [[ "${{ github.event.inputs.control }}" == "disable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
+            gh variable set LOCK_DEVELOPMENT_PRODUCTION --body "true"
+          fi
+          
+          if [[ "${{ github.event.inputs.control }}" == "enable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
+            gh variable set LOCK_DEVELOPMENT_DEPLOYMENT --body "false"
+          fi
+          
+          if [[ "${{ github.event.inputs.control }}" == "enable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
+            gh variable set LOCK_DEVELOPMENT_PRODUCTION --body "false"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GG_TOKEN }}
+
