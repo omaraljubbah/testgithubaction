@@ -12,7 +12,7 @@ on:
           - "Disable"
       environment:
         type: choice
-        description: enable or disable deployment
+        description: environment to control
         options:
           - "Development"
           - "Production"
@@ -23,19 +23,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - run: |
-          if [[ "${{ github.event.inputs.control }}" == "disable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
+          if [[ "${{ github.event.inputs.control }}" == "Disable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
             gh variable set LOCK_DEVELOPMENT_DEPLOYMENT --body "true"
           fi
           
-          if [[ "${{ github.event.inputs.control }}" == "disable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
+          if [[ "${{ github.event.inputs.control }}" == "Disable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
             gh variable set LOCK_DEVELOPMENT_PRODUCTION --body "true"
           fi
           
-          if [[ "${{ github.event.inputs.control }}" == "enable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
+          if [[ "${{ github.event.inputs.control }}" == "Enable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
             gh variable set LOCK_DEVELOPMENT_DEPLOYMENT --body "false"
           fi
           
-          if [[ "${{ github.event.inputs.control }}" == "enable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
+          if [[ "${{ github.event.inputs.control }}" == "Enable" && "${{ github.event.inputs.environment }}" == "Production" ]]; then
             gh variable set LOCK_DEVELOPMENT_PRODUCTION --body "false"
           fi
         env:
