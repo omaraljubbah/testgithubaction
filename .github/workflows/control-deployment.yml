@@ -24,6 +24,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - run: |
           if [[ "${{ github.event.inputs.control }}" == "Disable" && "${{ github.event.inputs.environment }}" == "Development" ]]; then
             gh variable set LOCK_DEVELOPMENT_DEPLOYMENT --body "true"
