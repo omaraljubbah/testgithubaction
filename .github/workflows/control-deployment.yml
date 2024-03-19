@@ -7,12 +7,14 @@ on:
       control:
         type: choice
         description: enable or disable deployment
+        required: true
         options:
           - "Enable"
           - "Disable"
       environment:
         type: choice
         description: environment to control
+        required: true
         options:
           - "Development"
           - "Production"
