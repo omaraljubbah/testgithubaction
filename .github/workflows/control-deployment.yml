@@ -1,5 +1,5 @@
 name: Control Deployments
-run-name: ${{ github.event.inputs.control }} deploy to ${{ github.event.inputs.environment }}
+run-name: ${{ github.event.inputs.control }} deploy to ${{ github.event.inputs.environment }} by ${{ github.event.author.name }}
 
 on:
   workflow_dispatch:
