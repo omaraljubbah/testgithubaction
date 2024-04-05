@@ -14,8 +14,10 @@ runs:
       id: build_message
       with:
         script: |
-          console.log("text is" , ${{ inputs.authorText }});
-          core.setOutput('popop', ${{ inputs.authorText }});
+          const author = `${{ inputs.authorText }}`;
+
+          console.log("text is" , author);
+          core.setOutput('popop', author);
     - name: echo
       shell: bash
       run: |
