@@ -14,4 +14,9 @@ runs:
       id: build_message
       with:
         script: |
-          console.log("text is" , ${{ inputs.authorText }})
+          console.log("text is" , ${{ inputs.authorText }});
+         core.setOutput('popop', ${{ inputs.authorText }});
+    - name: echo
+      shell: bash
+      run: |
+        echo "here you go " ${{ steps.build_message.outputs.popop }}
