@@ -10,6 +10,12 @@ on:
         options:
           - "true"
           - "false"
+      commitText:
+        type: string
+        description: the commit SHA with link to it
+      authorText:
+        type: string
+        description: the author of the commit with link to it
 #    workflows: ["aftermerge"]
 #    types:
 #      - completed
@@ -19,6 +25,10 @@ jobs:
     environment: dev
     runs-on: ubuntu-latest
     steps:
+      - uses: ./.github/actions/slack-alert
+        with:
+          commitText: ${{ inputs.commitText }}
+          authorText: ${{ inputs.authorText }}
       - run: |
           echo "before github ref"
           echo ${{ github.sha }}
