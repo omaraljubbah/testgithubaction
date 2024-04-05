@@ -15,7 +15,7 @@ runs:
       with:
         script: |
           console.log("text is" , ${{ inputs.authorText }});
-         core.setOutput('popop', ${{ inputs.authorText }});
+          core.setOutput('popop', ${{ inputs.authorText }});
     - name: echo
       shell: bash
       run: |
