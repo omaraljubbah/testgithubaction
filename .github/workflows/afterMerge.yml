@@ -17,6 +17,10 @@ jobs:
       contents: write
       actions: read
     steps:
+      - uses: ./.github/actions/slack-alert
+        with:
+          commitText: ${{ github.event.inputs.commitText }}
+          authorText: ${{ github.event.inputs.authorText }}
       - name: Update tag
         uses: actions/github-script@v7
         with:
